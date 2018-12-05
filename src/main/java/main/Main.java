@@ -7,11 +7,14 @@ import servlets.AllRequestsServlet;
 
 public class Main {
     public static void main(String[] args) throws Exception{
+
+        //create servlet for managing all requests
         AllRequestsServlet allRequestsServlet = new AllRequestsServlet();
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(allRequestsServlet), "/*");
 
+        //start Jetty's server
         Server server = new Server(8080);
         server.setHandler(context);
 
