@@ -7,18 +7,16 @@ import servlets.AllRequestsServlet;
 
 public class Main {
     public static void main(String[] args) throws Exception{
-        AllRequestsServlet frontend = new AllRequestsServlet();
+        AllRequestsServlet allRequestsServlet = new AllRequestsServlet();
 
-        //creating servlet-container and set what it'll process
-        ServletContextHandler context =
-                new ServletContextHandler(ServletContextHandler.SESSIONS);
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        context.addServlet(new ServletHolder(allRequestsServlet), "/*");
 
         Server server = new Server(8080);
         server.setHandler(context);
 
         server.start();
         server.join();
-        //context.addServlet(new ServletHolder(frontend), "/authform");
     }
 
 }
